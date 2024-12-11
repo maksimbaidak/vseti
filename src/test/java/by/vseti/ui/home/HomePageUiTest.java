@@ -17,7 +17,6 @@ public class HomePageUiTest {
     @Test
     @DisplayName("create new post on user wall")
     void newPostTest(){
-        System.out.println("111111111111111111111111111111111111111");
         String text = "привет world";
         assertTrue(
                 homePageStep
@@ -30,7 +29,6 @@ public class HomePageUiTest {
     @Test
     @DisplayName("change avatar")
     void changeAvatar() {
-        System.out.println("@222222222222222222222222222222222222222222222222");
         homePageStep
                 .get(userService.getRegisteredUser())
                 .changeAvatar();

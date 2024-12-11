@@ -20,9 +20,9 @@ public class LoginApiTest {
     @DisplayName("login with registrated user")
     void positiveLogin(){
         assertEquals(
-                "200",
+                200,
                 loginApi
-                        .getResponse(userService.getRegisteredUser())
+                        .login(userService.getRegisteredUser())
                         .getStatus());
     }
 
@@ -32,7 +32,7 @@ public class LoginApiTest {
         assertEquals(
                 LoginResponceMessages.BAD_CREDENTIALS,
                 loginApi
-                        .getResponse(userService.getValidRandomUser())
-                        .getError());
+                        .login(userService.getValidRandomUser())
+                        .getError().get());
     }
 }

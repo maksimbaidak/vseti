@@ -17,43 +17,39 @@ public abstract class AbstractApi<T extends Response>  {
 
     @Autowired private HttpClient httpClient;
 
-    public T getResponse(User user){
+    protected T makeRequest(
+            String body,
+            RequestSpecification specifications,
+            Class<T> responseClass){
         Response response = null;
         try {
             response =
                     httpClient
-                            .makeRequest(getSpecifications(), getBody(user))
+                            .makeRequest(specifications, body)
                             .log().status()
                             .log().body()
-                            .extract().as(getResponseType());
+                            .extract().as(responseClass);
         }catch (Exception exception){
             log.info(exception.getMessage());
             try {
-                return (T) getResponseType()
-                        .getClass()
+                return (T) responseClass
                         .getConstructor()
                         .newInstance("Response isn't valid");
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
         }
-        if(response.getError().equals(LIMIT_EXCEEDED)){
+        if(response.getError().isPresent() && response.getError().get().equals(LIMIT_EXCEEDED)){
             try {
                 log.info("Request limit lxceeded, trying to reconnect...");
                 Thread.sleep(5000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            return getResponse(user);
+            return makeRequest(body, specifications, responseClass);
         }
         return (T) response;
     }
-
-    protected abstract RequestSpecification getSpecifications();
-
-    protected abstract String getBody(User user);
-
-    protected abstract Type getResponseType();
 
     protected Map<String, ?> parseQueryParams(String params){
         return split(params);

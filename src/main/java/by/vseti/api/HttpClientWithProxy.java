@@ -19,9 +19,10 @@ public class HttpClientWithProxy implements HttpClient {
 
     public ValidatableResponse makeRequest(RequestSpecification specs, String body){
         Response response = null;
-        Proxy proxy = proxyStorage.getNext();
-        log.info(proxy.toString());
+        Proxy proxy = null;
         do{
+            proxy = proxyStorage.getNext();
+            log.info("Attempt to connect by: " + proxy.toString());
             try{response =
                     given()
                             .spec(specs)
@@ -35,7 +36,8 @@ public class HttpClientWithProxy implements HttpClient {
                             .log().uri()
                             .log().body()
                             .post();
-            }catch (Exception exception){
+            }
+            catch (Exception exception){
                 log.info(exception.getMessage());
             }
         }while(response == null);

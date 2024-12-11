@@ -22,8 +22,8 @@ public class RegistrationApiTest {
         assertEquals(
                 RegistrationResponceMessages.GREETING,
                 registrationApi
-                        .getResponse(userService.getUserWithBadPassword())
-                        .getError());
+                        .register(userService.getUserWithBadPassword())
+                        .getError().get());
     }
 
     @Test
@@ -53,7 +53,7 @@ public class RegistrationApiTest {
         assertEquals(
                 expectedError,
                 registrationApi
-                        .getResponse(user)
-                        .getError());
+                        .register(user)
+                        .getError().get());
     }
 }

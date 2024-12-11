@@ -9,30 +9,23 @@ import org.springframework.stereotype.Component;
 import java.lang.reflect.Type;
 
 @Component
-public class RegistrationApi extends AbstractApi<RegistrationResponse>{
+public class RegistrationApi extends AbstractApi{
 
-    @Override
-    protected String getBody(User user){
-        return  "username=" + user.getUsername() +
-                "&email=" + user.getEmail() +
-                "&password=" + user.getPassword() +
-                "&confirm_password=" + user.getPassword() +
-                "&gender=" + user.getGender() +
-                "&g-recaptcha-response=" + null +
-                "&accept_terms=on";
-    }
-
-    @Override
-    protected Type getResponseType() {
-        return RegistrationResponse.class;
-    }
-
-    @Override
-    protected RequestSpecification getSpecifications(){
-        return new RequestSpecBuilder()
-                .setBaseUri(RegistrationRequestParameters.URL)
-                .addQueryParams(parseQueryParams(RegistrationRequestParameters.RAW_QUERY_PARAMETERS))
-                .addHeaders(parseHeaders(RegistrationRequestParameters.RAW_HEADERS))
-                .build();
+    public RegistrationResponse register(User user){
+        return (RegistrationResponse)
+                makeRequest(
+                        "username=" + user.getUsername() +
+                                "&email=" + user.getEmail() +
+                                "&password=" + user.getPassword() +
+                                "&confirm_password=" + user.getPassword() +
+                                "&gender=" + user.getGender() +
+                                "&g-recaptcha-response=" + null +
+                                "&accept_terms=on",
+                        new RequestSpecBuilder()
+                                .setBaseUri(RegistrationRequestParameters.URL)
+                                .addQueryParams(parseQueryParams(RegistrationRequestParameters.RAW_QUERY_PARAMETERS))
+                                .addHeaders(parseHeaders(RegistrationRequestParameters.RAW_HEADERS))
+                                .build(),
+                        RegistrationResponse.class);
     }
 }
