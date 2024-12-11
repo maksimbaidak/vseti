@@ -3,6 +3,7 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 *.log
+src/main/resources/*
 ### IntelliJ IDEA ###
 .idea/*
 *.iws
