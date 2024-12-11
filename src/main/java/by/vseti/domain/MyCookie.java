@@ -8,7 +8,6 @@ import java.util.Date;
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString
 public class MyCookie {
 
     private String key;

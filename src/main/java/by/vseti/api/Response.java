@@ -4,5 +4,5 @@ import java.util.Optional;
 
 public interface Response {
 
-    public Optional<String> getError();
+    Optional<String> getError();
 }

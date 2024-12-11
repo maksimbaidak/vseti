@@ -26,14 +26,15 @@ public abstract class AbstractApi<T extends Response>  {
             response =
                     httpClient
                             .makeRequest(specifications, body)
-                            .log().status()
-                            .log().body()
+//                            .log().status()
+//                            .log().body()
+                            .log().all()
                             .extract().as(responseClass);
         }catch (Exception exception){
             log.info(exception.getMessage());
             try {
                 return (T) responseClass
-                        .getConstructor()
+                        .getConstructor(String.class)
                         .newInstance("Response isn't valid");
             } catch (Exception e) {
                 throw new RuntimeException(e);

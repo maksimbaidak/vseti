@@ -32,9 +32,10 @@ public class HttpClientWithProxy implements HttpClient {
                                     .withAuth(proxy.getLogin(),proxy.getPassword()))
                             .body(body)
                             .when()
-                            .log().method()
-                            .log().uri()
-                            .log().body()
+//                            .log().method()
+//                            .log().uri()
+//                            .log().body()
+                            .log().all()
                             .post();
             }
             catch (Exception exception){
