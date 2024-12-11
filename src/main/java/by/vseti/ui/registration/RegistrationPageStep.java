@@ -1,13 +1,13 @@
 package by.vseti.ui.registration;
 
 import by.vseti.domain.User;
-import by.vseti.ui.Step;
+import by.vseti.ui.Actions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 
 @Component
-public class RegistrationPageStep extends Step {
+public class RegistrationPageStep extends Actions {
 
     @Autowired private RegistrationPage registrationPage;
 

@@ -1,5 +1,6 @@
 package by.vseti.ui.registration;
 
+import by.vseti.ui.Appendable;
 import by.vseti.ui.Page;
 import by.vseti.ui.util.CaptchaSolver;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
-public class RegistrationPage extends Page<RegistrationPage> {
+public class RegistrationPage extends Page implements Appendable<RegistrationPage> {
 
     @Autowired private CaptchaSolver captchaSolver;
 
@@ -58,10 +59,5 @@ public class RegistrationPage extends Page<RegistrationPage> {
 
     public String getErrorMessage(){
         return findByXpath(RegistrationPageXpath.FORM_ERROR).getText();
-    }
-
-    @Override
-    protected RegistrationPage getThisCls() {
-        return this;
     }
 }

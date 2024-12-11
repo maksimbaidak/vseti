@@ -2,6 +2,7 @@ package by.vseti.ui.home;
 
 import by.vseti.domain.MyCookie;
 import by.vseti.domain.User;
+import by.vseti.ui.Appendable;
 import by.vseti.ui.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.Cookie;
@@ -12,7 +13,7 @@ import java.time.Duration;
 
 @Slf4j
 @Component
-public class HomePage extends Page<HomePage> {
+public class HomePage extends Page implements Appendable<HomePage> {
 
     public HomePage get(User user){
         webDriver.get("https://vseti.by/" + user.getUsername());
@@ -54,11 +55,6 @@ public class HomePage extends Page<HomePage> {
                 .sendKeys("C:\\Users\\baidakm\\Desktop\\photo.png");
         new WebDriverWait(webDriver, Duration.ofSeconds(20))
                 .until(x -> findByXpath(HomePageXpath.SAVE_NEW_AVATAR_BUTTON).isDisplayed());
-        return this;
-    }
-
-    @Override
-    protected HomePage getThisCls() {
         return this;
     }
 }

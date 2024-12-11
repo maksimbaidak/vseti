@@ -4,7 +4,8 @@ import java.util.function.Consumer;
 
 /**
  * Class that implement this interface are able
- * to add some actions right in chain of method calls
+ * to add some by.vseti.ui.Actions right in
+ * chain of method calls
  * @param <T>
  */
 public interface Appendable<T> {

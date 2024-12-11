@@ -1,12 +1,12 @@
 package by.vseti.ui.home;
 
 import by.vseti.domain.User;
-import by.vseti.ui.Step;
+import by.vseti.ui.Actions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class HomePageStep extends Step {
+public class HomePageStep extends Actions {
 
     @Autowired private HomePage homePage;
 

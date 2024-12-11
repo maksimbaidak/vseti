@@ -1,13 +1,1 @@
-{
-  "username": "maksimbaidak",
-  "email": "maksimbaidak@gmail.com",
-  "password": "Vseti123",
-  "passwordConfirmation": null,
-  "gender": null,
-  "cookies": [
-    {
-      "key": "PHPSESSID",
-      "value": "cb897fb068f81976aad3fbd4d9abf3ec"
-    }
-  ]
-}
+{"username":"maksimbaidak","email":"maksimbaidak@gmail.com","password":"Vseti123","passwordConfirmation":null,"gender":null,"cookies":[{"key":"PHPSESSID","value":"cb897fb068f81976aad3fbd4d9abf3ec"}]}

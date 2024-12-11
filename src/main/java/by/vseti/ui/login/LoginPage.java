@@ -1,11 +1,12 @@
 package by.vseti.ui.login;
 
+import by.vseti.ui.Appendable;
 import by.vseti.ui.Page;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
-public class LoginPage extends Page<LoginPage> {
+public class LoginPage extends Page implements Appendable<LoginPage> {
 
     LoginPage get(){
         webDriver.get("https://vseti.by/welcome");
@@ -33,10 +34,5 @@ public class LoginPage extends Page<LoginPage> {
 
     public String getErrorMessage(){
         return findByXpath(LoginPageXpath.ERRORS_FIELD).getText();
-    }
-
-    @Override
-    protected LoginPage getThisCls() {
-        return this;
     }
 }

@@ -7,16 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.function.Consumer;
 
-public abstract class Page<T> {
+public abstract class Page {
 
     @Autowired protected WebDriver webDriver;
-
-    protected abstract T getThisCls();
-
-    public T appendAction(Consumer c){
-        c.accept(c);
-        return getThisCls();
-    }
 
     protected WebElement findByXpath(String xPath){
         return webDriver.findElement(By.xpath(xPath));

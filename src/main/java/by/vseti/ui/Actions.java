@@ -1,13 +1,11 @@
 package by.vseti.ui;
 
 import lombok.extern.slf4j.Slf4j;
-import org.openqa.selenium.WebDriver;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.function.Consumer;
 
 @Slf4j
-public abstract class Step {
+public class Actions {
 
     public static Consumer await(Integer sec){
         return o -> {
