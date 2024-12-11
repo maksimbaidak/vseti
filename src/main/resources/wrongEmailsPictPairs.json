@@ -1,0 +1,22 @@
+[
+  {
+    "hasUserName": " true",
+    "hasAtSymbol": "false",
+    "hasDomain": "false"
+  },
+  {
+    "hasUserName": "true",
+    "hasAtSymbol": "false",
+    "hasDomain": "true"
+  },
+  {
+    "hasUserName": "false",
+    "hasAtSymbol": "true",
+    "hasDomain": "true"
+  },
+  {
+    "hasUserName": "true",
+    "hasAtSymbol": "true",
+    "hasDomain": "false"
+  }
+]
