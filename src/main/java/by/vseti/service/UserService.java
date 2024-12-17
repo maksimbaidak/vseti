@@ -1,9 +1,11 @@
 package by.vseti.service;
 
 import by.vseti.domain.User;
+import by.vseti.storage.UserStorage;
 import com.github.javafaker.service.FakeValuesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.stream.Stream;
 
@@ -25,7 +27,7 @@ public class UserService {
     }
 
     public User getRegisteredUser(){
-        return userStorage.getUser();
+        return userStorage.getReferenceById(1);
     }
 
     public User getValidRandomUser(){

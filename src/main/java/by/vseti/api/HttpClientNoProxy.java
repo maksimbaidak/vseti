@@ -16,9 +16,10 @@ public class HttpClientNoProxy implements HttpClient {
                         .spec(specs)
                         .body(body)
                 .when()
-                        .log().method()
-                        .log().uri()
-                        .log().body()
+//                        .log().method()
+//                        .log().uri()
+//                        .log().body()
+                .log().all()
                         .post()
                 .then();
     }

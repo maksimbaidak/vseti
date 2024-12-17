@@ -45,12 +45,12 @@ public class PasswordService {
         }
     }
 
-    private String generateBadPassword(Password password){
+    private String generateBadPassword(Password badPasswordSpecs){
         StringBuilder genPass = new StringBuilder();
-        if(password.getLength() >= 6) genPass.append(faker.bothify("??????"));
-        if(password.isHasLowercase()) genPass.append(faker.bothify("?"));
-        if(password.isHasUppercase()) genPass.append(new String(faker.bothify("?")).toUpperCase());
-        if(password.isHasDigitOrSymbol()) genPass.append(faker.bothify("#"));
+        if(badPasswordSpecs.getLength() >= 6) genPass.append(faker.bothify("??????"));
+        if(badPasswordSpecs.isHasLowercase()) genPass.append(faker.bothify("?"));
+        if(badPasswordSpecs.isHasUppercase()) genPass.append(new String(faker.bothify("?")).toUpperCase());
+        if(badPasswordSpecs.isHasDigitOrSymbol()) genPass.append(faker.bothify("#"));
         return genPass.toString();
     }
 }

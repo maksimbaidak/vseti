@@ -1,13 +1,13 @@
 package by.vseti.api;
 
 import by.vseti.domain.Proxy;
+import by.vseti.storage.ProxyStorage;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.ProxySpecification;
 import io.restassured.specification.RequestSpecification;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import static io.restassured.RestAssured.given;
 

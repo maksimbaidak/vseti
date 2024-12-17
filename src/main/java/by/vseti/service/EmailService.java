@@ -36,11 +36,11 @@ public class EmailService {
         }
     }
 
-    private String generateBadEmail(Email email) {
+    private String generateBadEmail(Email badEmailSpecs) {
         StringBuilder genEmail = new StringBuilder();
-        if(email.isHasUserName()) genEmail.append(faker.bothify("???"));
-        if(email.isHasAtSymbol()) genEmail.append("@");
-        if(email.isHasDomain()) genEmail.append(faker.bothify("??.??"));
+        if(badEmailSpecs.isHasUserName()) genEmail.append(faker.bothify("???"));
+        if(badEmailSpecs.isHasAtSymbol()) genEmail.append("@");
+        if(badEmailSpecs.isHasDomain()) genEmail.append(faker.bothify("??.??"));
         return genEmail.toString();
     }
 }

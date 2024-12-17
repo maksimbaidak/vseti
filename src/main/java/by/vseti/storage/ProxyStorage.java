@@ -1,4 +1,4 @@
-package by.vseti.api;
+package by.vseti.storage;
 
 import by.vseti.domain.Proxy;
 import com.fasterxml.jackson.core.type.TypeReference;

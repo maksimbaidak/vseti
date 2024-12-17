@@ -14,7 +14,6 @@ public class LoginApi extends AbstractApi{
                         "username=" + user.getUsername() +
                               "&password=" + user.getPassword(),
                         new RequestSpecBuilder()
-
                                 .setBaseUri(LoginRequestParameters.URL)
                                 .addQueryParams(parseQueryParams(LoginRequestParameters.RAW_QUERY_PARAMETERS))
                                 .addHeaders(parseHeaders(LoginRequestParameters.RAW_HEADERS))

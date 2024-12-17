@@ -4,11 +4,12 @@ import by.vseti.service.UserService;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@Transactional
 @SpringBootTest
-//@TestMethodOrder(MethodOrderer.Random.class)
 public class HomePageUiTest {
 
     @Autowired private UserService userService;
@@ -24,13 +25,5 @@ public class HomePageUiTest {
                         .addNewPost(text)
                         .getPosts()
                         .contains(text));
-    }
-
-    @Test
-    @DisplayName("change avatar")
-    void changeAvatar() {
-        homePageStep
-                .get(userService.getRegisteredUser())
-                .changeAvatar();
     }
 }

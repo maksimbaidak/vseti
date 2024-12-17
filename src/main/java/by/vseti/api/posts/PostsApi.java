@@ -3,6 +3,8 @@ package by.vseti.api.posts;
 import by.vseti.api.AbstractApi;
 import by.vseti.domain.User;
 import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.http.Cookie;
+import io.restassured.http.Cookies;
 import io.restassured.specification.RequestSpecification;
 import org.springframework.stereotype.Component;
 
@@ -44,19 +46,12 @@ public class PostsApi extends AbstractApi {
                         "&postRecord=" +
                         "&postSticker=";
 
-        Map<String,String> cookies =
-                user.getCookies()
-                        .stream()
-                        .collect(Collectors.toMap(
-                                myCookie -> myCookie.getKey(),
-                                myCookie -> myCookie.getValue()));
-
         RequestSpecification specifications =
                 new RequestSpecBuilder()
                         .setBaseUri(NewPostRequestParameters.URL)
                         .addQueryParams(parseQueryParams(NewPostRequestParameters.RAW_QUERY_PARAMETERS))
                         .addHeaders(parseHeaders(NewPostRequestParameters.RAW_HEADERS))
-                        .addCookies(cookies)
+                        .addCookies(user.getCookiesMap())
                         .build();
 
         return (NewPostResponse)

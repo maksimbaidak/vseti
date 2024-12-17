@@ -6,7 +6,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+@Transactional
 @SpringBootTest
 public class PostsApiTest {
 
@@ -16,15 +20,12 @@ public class PostsApiTest {
     @Test
     @DisplayName("add new text post")
     void createPost(){
-        Assertions.assertEquals(
+        assertEquals(
                 200,
                 postsApi
-                        .createTextPostWithColor(userService.getRegisteredUser(), "Наконец разобрался")
+                        .createTextPostWithColor(
+                                userService.getRegisteredUser(),
+                                "наконец")
                         .getStatus());
-    }
-
-    @Test
-    void test(){
-        System.out.println(userService.getRegisteredUser());
     }
 }

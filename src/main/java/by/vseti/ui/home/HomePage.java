@@ -1,6 +1,5 @@
 package by.vseti.ui.home;
 
-import by.vseti.domain.MyCookie;
 import by.vseti.domain.User;
 import by.vseti.ui.Appendable;
 import by.vseti.ui.Page;
@@ -17,10 +16,9 @@ public class HomePage extends Page implements Appendable<HomePage> {
 
     public HomePage get(User user){
         webDriver.get("https://vseti.by/" + user.getUsername());
-        for (MyCookie myCookie : user.getCookies()){
-            webDriver.manage().addCookie(
-                    new Cookie(myCookie.getKey(), myCookie.getValue()));
-        }
+        //webDriver.manage().deleteAllCookies();
+        user.getCookiesMap().forEach((key, value) ->
+                webDriver.manage().addCookie(new Cookie(key, value)));
         log.info("driver cookie: " + webDriver.manage().getCookies().toString());
         webDriver.navigate().refresh();
         return this;
@@ -47,14 +45,6 @@ public class HomePage extends Page implements Appendable<HomePage> {
 
     HomePage clickAvatarButton(){
         findByXpath(HomePageXpath.AVATAR_BUTTON).click();
-        return this;
-    }
-
-    HomePage loadAvatar(){
-        findByXpath(HomePageXpath.LOAD_AVATAR_INPUT)
-                .sendKeys("C:\\Users\\baidakm\\Desktop\\photo.png");
-        new WebDriverWait(webDriver, Duration.ofSeconds(20))
-                .until(x -> findByXpath(HomePageXpath.SAVE_NEW_AVATAR_BUTTON).isDisplayed());
         return this;
     }
 }

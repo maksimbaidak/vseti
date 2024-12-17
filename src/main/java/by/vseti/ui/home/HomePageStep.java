@@ -24,10 +24,4 @@ public class HomePageStep extends Actions {
                 .clickCreateNewPostButton()
                 .appendAction(await(2));
     }
-
-    public HomePage changeAvatar(){
-        return homePage
-                .clickAvatarButton()
-                .loadAvatar();
-    }
 }
