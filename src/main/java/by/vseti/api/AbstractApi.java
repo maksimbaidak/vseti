@@ -30,7 +30,7 @@ public abstract class AbstractApi<T extends Response>  {
                             .log().body()
                             .extract().as(responseClass);
         }catch (Exception exception){
-            log.info(exception.getMessage());
+            log.error(exception.getMessage());
             try {
                 return (T) responseClass
                         .getConstructor(String.class)
@@ -41,7 +41,7 @@ public abstract class AbstractApi<T extends Response>  {
         }
         if(response.getError().isPresent() && response.getError().get().equals(LIMIT_EXCEEDED)){
             try {
-                log.info("Request limit lxceeded, trying to reconnect...");
+                log.error("Request limit lxceeded, trying to reconnect...");
                 Thread.sleep(5000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
