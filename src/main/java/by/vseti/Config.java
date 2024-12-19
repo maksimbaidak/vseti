@@ -41,7 +41,6 @@ public class Config {
 
         WebDriver driver = getDriverNoProxy(chromeOptions);
 
-        //driver.manage().window().setSize(new Dimension(2000, 800));
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         this.webDriver = driver;

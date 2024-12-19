@@ -17,8 +17,6 @@ public class LoginPageUiTest {
     @Autowired private LoginPageStep loginPageStep;
     @Autowired private UserService userService;
 
-
-
     @Test
     @DisplayName("check if registered user is able to login")
     void login() {

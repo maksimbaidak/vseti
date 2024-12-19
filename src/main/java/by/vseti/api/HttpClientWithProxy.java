@@ -1,6 +1,7 @@
 package by.vseti.api;
 
 import by.vseti.domain.Proxy;
+import by.vseti.service.ProxyService;
 import by.vseti.storage.ProxyStorage;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
@@ -15,13 +16,13 @@ import static io.restassured.RestAssured.given;
 public class HttpClientWithProxy implements HttpClient {
 
     @Autowired
-    private ProxyStorage proxyStorage;
+    private ProxyService proxyService;
 
     public ValidatableResponse makeRequest(RequestSpecification specs, String body){
         Response response = null;
         Proxy proxy = null;
         do{
-            proxy = proxyStorage.getNext();
+            proxy = proxyService.getNext();
             log.info("Attempt to connect by: " + proxy.toString());
             try{response =
                     given()
@@ -32,10 +33,9 @@ public class HttpClientWithProxy implements HttpClient {
                                     .withAuth(proxy.getLogin(),proxy.getPassword()))
                             .body(body)
                             .when()
-//                            .log().method()
-//                            .log().uri()
-//                            .log().body()
-                            .log().all()
+                            .log().method()
+                            .log().uri()
+                            .log().body()
                             .post();
             }
             catch (Exception exception){

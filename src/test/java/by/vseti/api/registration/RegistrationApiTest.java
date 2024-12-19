@@ -22,7 +22,7 @@ public class RegistrationApiTest {
         assertEquals(
                 RegistrationResponceMessages.GREETING,
                 registrationApi
-                        .register(userService.getUserWithBadPassword())
+                        .register(userService.getValidRandomUser())
                         .getError().get());
     }
 

@@ -12,10 +12,10 @@ import java.util.stream.Stream;
 @Service
 public class UserService {
 
+    @Autowired private UserStorage userStorage;
     @Autowired private EmailService emailService;
     @Autowired private PasswordService passwordService;
     @Autowired private FakeValuesService faker;
-    @Autowired private UserStorage userStorage;
 
     public User getEmptyValueUser(){
         return User

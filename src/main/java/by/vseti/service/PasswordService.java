@@ -1,6 +1,7 @@
 package by.vseti.service;
 
 import by.vseti.domain.Password;
+import by.vseti.storage.PasswordStorage;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.javafaker.service.FakeValuesService;
@@ -16,8 +17,7 @@ import java.util.stream.Stream;
 @Service
 public class PasswordService {
 
-    @Value("${path.wrongPasswords}") private String path;
-
+    @Autowired private PasswordStorage passwordStorage;
     @Autowired private FakeValuesService faker;
     @Autowired private ObjectMapper mapper;
 
@@ -35,14 +35,10 @@ public class PasswordService {
     }
 
     public Stream<String> generateWrongPasswords()  {
-        try {
-            return mapper
-                    .readValue(new File(path), new TypeReference<List<Password>>(){})
-                    .stream()
-                        .map(passJsonObj -> generateBadPassword(passJsonObj));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        return passwordStorage
+                .findAll()
+                .stream()
+                .map(this::generateBadPassword);
     }
 
     private String generateBadPassword(Password badPasswordSpecs){

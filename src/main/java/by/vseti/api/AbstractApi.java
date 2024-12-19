@@ -26,9 +26,8 @@ public abstract class AbstractApi<T extends Response>  {
             response =
                     httpClient
                             .makeRequest(specifications, body)
-//                            .log().status()
-//                            .log().body()
-                            .log().all()
+                            .log().status()
+                            .log().body()
                             .extract().as(responseClass);
         }catch (Exception exception){
             log.info(exception.getMessage());

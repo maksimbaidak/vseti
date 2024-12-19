@@ -1,6 +1,7 @@
 package by.vseti.service;
 
 import by.vseti.domain.Email;
+import by.vseti.storage.EmailStorage;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.javafaker.service.FakeValuesService;
@@ -16,8 +17,7 @@ import java.util.stream.Stream;
 @Service
 public class EmailService {
 
-    @Value("${path.wrongEmails}") private String path;
-
+    @Autowired private EmailStorage emailStorage;
     @Autowired private FakeValuesService faker;
     @Autowired private ObjectMapper mapper;
 
@@ -26,14 +26,10 @@ public class EmailService {
     }
 
     public Stream<String> generateWrongEmails()  {
-        try {
-            return mapper
-                    .readValue(new File(path), new TypeReference<List<Email>>(){})
-                    .stream()
-                        .map(passJsonObj -> generateBadEmail(passJsonObj));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        return emailStorage
+                .findAll()
+                .stream()
+                .map(this::generateBadEmail);
     }
 
     private String generateBadEmail(Email badEmailSpecs) {
