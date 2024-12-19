@@ -1,6 +1,7 @@
 package by.vseti.ui.home;
 
 import by.vseti.service.UserService;
+import by.vseti.ui.AbstractUiTest;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Transactional
 @SpringBootTest
-public class HomePageUiTest {
+public class HomePageUiTest extends AbstractUiTest {
 
     @Autowired private UserService userService;
     @Autowired private HomePageStep homePageStep;

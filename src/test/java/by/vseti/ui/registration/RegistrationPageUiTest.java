@@ -2,6 +2,7 @@ package by.vseti.ui.registration;
 
 import by.vseti.domain.User;
 import by.vseti.service.UserService;
+import by.vseti.ui.AbstractUiTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Transactional
 @SpringBootTest
-public class RegistrationPageUiTest {
+public class RegistrationPageUiTest extends AbstractUiTest {
 
     @Autowired private RegistrationPageStep registrationPageStep;
     @Autowired private UserService userService;

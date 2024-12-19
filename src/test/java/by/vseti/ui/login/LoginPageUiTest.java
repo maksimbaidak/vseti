@@ -1,6 +1,7 @@
 package by.vseti.ui.login;
 
 import by.vseti.service.UserService;
+import by.vseti.ui.AbstractUiTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 @Transactional
 @SpringBootTest
-public class LoginPageUiTest {
+public class LoginPageUiTest extends AbstractUiTest{
 
     @Autowired private LoginPageStep loginPageStep;
     @Autowired private UserService userService;
