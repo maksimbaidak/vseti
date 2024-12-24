@@ -1,7 +1,6 @@
 package by.vseti;
 
 import by.vseti.api.HttpClient;
-import by.vseti.api.HttpClientNoProxy;
 import by.vseti.api.HttpClientWithProxy;
 import by.vseti.ui.util.CaptchaSolver;
 import by.vseti.ui.util.TwoCaptchaSolver;
@@ -10,8 +9,6 @@ import com.github.javafaker.service.FakeValuesService;
 import com.github.javafaker.service.RandomService;
 import jakarta.annotation.PreDestroy;
 import lombok.extern.slf4j.Slf4j;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.UsernameAndPassword;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -55,7 +52,6 @@ public class Config {
     }
 
     @Bean
-    @Scope("singleton")
     public CaptchaSolver getCaptchaSolver(){
         return new TwoCaptchaSolver("ed9c40ae3ce3049b522945eab151947a");
     }
