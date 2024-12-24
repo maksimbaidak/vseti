@@ -14,7 +14,6 @@ public class EmailService {
 
     @Autowired private EmailStorage emailStorage;
     @Autowired private FakeValuesService faker;
-    @Autowired private ObjectMapper mapper;
 
     public String generateValid(){
         return faker.bothify("?????@???.???");

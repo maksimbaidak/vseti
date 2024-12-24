@@ -14,7 +14,6 @@ public class PasswordService {
 
     @Autowired private PasswordStorage passwordStorage;
     @Autowired private FakeValuesService faker;
-    @Autowired private ObjectMapper mapper;
 
     /**
      *
