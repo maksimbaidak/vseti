@@ -18,4 +18,9 @@ public class RegistrationResponse implements Response {
     public Optional<String> getError() {
         return errors == null ? Optional.empty() : Optional.of(errors);
     }
+
+    @Override
+    public void setError(String string) {
+        this.errors = string;
+    }
 }

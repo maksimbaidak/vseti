@@ -24,7 +24,7 @@ public class LoginPageUiTest extends AbstractUiTest{
         assertEquals(
                 LoginPageMessages.GREETING,
                 loginPageStep
-                        .fillFormAndSubmit(userService.getRegisteredUser())
+                        .fillFormAndSubmit(userService.getRegisteredUser("maksimbaidak"))
                         .getGreeting());
     }
 

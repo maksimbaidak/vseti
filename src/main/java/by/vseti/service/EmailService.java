@@ -2,16 +2,11 @@ package by.vseti.service;
 
 import by.vseti.domain.Email;
 import by.vseti.storage.EmailStorage;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.javafaker.service.FakeValuesService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
 import java.util.stream.Stream;
 
 @Service
@@ -27,8 +22,7 @@ public class EmailService {
 
     public Stream<String> generateWrongEmails()  {
         return emailStorage
-                .findAll()
-                .stream()
+                .getAll()
                 .map(this::generateBadEmail);
     }
 

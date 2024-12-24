@@ -24,7 +24,7 @@ public class LoginApiTest {
         assertEquals(
                 200,
                 loginApi
-                        .login(userService.getRegisteredUser())
+                        .login(userService.getRegisteredUser("maksimbaidak"))
                         .getStatus());
     }
 

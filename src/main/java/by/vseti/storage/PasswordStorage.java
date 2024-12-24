@@ -1,9 +1,33 @@
 package by.vseti.storage;
 
 import by.vseti.domain.Password;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+import java.util.stream.Stream;
+
 @Repository
-public interface PasswordStorage extends JpaRepository<Password, Integer> {
+public class PasswordStorage {
+
+    @Value("${path.email}") private String path;
+
+    @Autowired
+    private ObjectMapper mapper;
+
+    public Stream<Password> getAll(){
+        try {
+            return mapper
+                    .readValue(new File(path), new TypeReference<List<Password>>(){})
+                    .stream();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

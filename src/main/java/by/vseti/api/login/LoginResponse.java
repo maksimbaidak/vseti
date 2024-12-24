@@ -16,15 +16,17 @@ public class LoginResponse implements Response {
     private String location;
     private String[] errors;
 
-    public LoginResponse(String str){
-        errors = new String[]{str};
-    }
-
     public Optional<String> getError(){
         if(errors != null){
             return errors.length == 0 ? Optional.empty() : Optional.of(errors[0]);
         }else {
             return Optional.empty();
         }
+    }
+
+    @Override
+    public void setError(String string) {
+        this.errors = new String[1];
+        this.errors[0] = string;
     }
 }

@@ -3,13 +3,8 @@ package by.vseti.api.posts;
 import by.vseti.api.AbstractApi;
 import by.vseti.domain.User;
 import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.http.Cookie;
-import io.restassured.http.Cookies;
 import io.restassured.specification.RequestSpecification;
 import org.springframework.stereotype.Component;
-
-import java.util.Map;
-import java.util.stream.Collectors;
 
 @Component
 public class PostsApi extends AbstractApi {

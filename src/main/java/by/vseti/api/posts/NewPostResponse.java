@@ -17,12 +17,13 @@ public class NewPostResponse implements Response {
     private int status;
     private String errors;
 
-    public NewPostResponse(String str){
-        errors = str;
-    }
-
     @Override
     public Optional<String> getError() {
         return errors == null ? Optional.empty() : Optional.of(errors);
+    }
+
+    @Override
+    public void setError(String string) {
+        this.errors = string;
     }
 }

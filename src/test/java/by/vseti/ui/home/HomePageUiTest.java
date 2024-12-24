@@ -22,7 +22,7 @@ public class HomePageUiTest extends AbstractUiTest {
         String text = "привет world";
         assertTrue(
                 homePageStep
-                        .get(userService.getRegisteredUser())
+                        .get(userService.getRegisteredUser("maksimbaidak"))
                         .addNewPost(text)
                         .getPosts()
                         .contains(text));

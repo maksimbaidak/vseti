@@ -24,7 +24,7 @@ public class PostsApiTest {
                 200,
                 postsApi
                         .createTextPostWithColor(
-                                userService.getRegisteredUser(),
+                                userService.getRegisteredUser("maksimbaidak"),
                                 "наконец")
                         .getStatus());
     }

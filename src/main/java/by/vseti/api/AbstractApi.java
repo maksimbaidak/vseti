@@ -1,12 +1,9 @@
 package by.vseti.api;
 
-import by.vseti.domain.User;
 import io.restassured.specification.RequestSpecification;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Type;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -31,17 +28,22 @@ public abstract class AbstractApi<T extends Response>  {
                             .extract().as(responseClass);
         }catch (Exception exception){
             log.error(exception.getMessage());
+            log.error("Response isn't valid");
             try {
-                return (T) responseClass
-                        .getConstructor(String.class)
-                        .newInstance("Response isn't valid");
+                response =
+                        responseClass
+                                .getConstructor()
+                                .newInstance();
+                response.setError("Response isn't valid");
+                return (T) response;
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
         }
-        if(response.getError().isPresent() && response.getError().get().equals(LIMIT_EXCEEDED)){
+        if(response.getError().isPresent() &&
+                response.getError().get().equals(LIMIT_EXCEEDED)){
             try {
-                log.error("Request limit lxceeded, trying to reconnect...");
+                log.error("Request limit exceeded, trying to reconnect...");
                 Thread.sleep(5000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
