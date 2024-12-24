@@ -10,20 +10,24 @@ public abstract class CaptchaSolver {
 
     @Autowired private WebDriver webDriver;
 
+    private final String DATA_SITE_KEY_LOCATION = "//*[@id=\"register\"]/div[2]/div";
+    private final String DISPLAY_NONE_JS_SCRIPT = "arguments[0].setAttribute('style', 'width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none;')";
+    private final String RECAPTCHA_RESPONSE_LOCATION = "//*[@id=\"g-recaptcha-response\"]";
+
     public CaptchaSolver(String apiKey){}
 
     public void solveGCaptcha(){
         String siteKey =
-                webDriver.findElement(By.xpath("//*[@id=\"register\"]/div[2]/div"))
+                webDriver
+                        .findElement(By.xpath(DATA_SITE_KEY_LOCATION))
                         .getAttribute("data-sitekey");
 
         String solution = handleGCaptcha(siteKey, webDriver.getCurrentUrl());
 
-        WebElement textArea = webDriver.findElement(By.xpath("//*[@id=\"g-recaptcha-response\"]"));
-        ((JavascriptExecutor)webDriver)
-                .executeScript(
-                        "arguments[0].setAttribute('style', 'width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none;')",
-                        textArea);
+        WebElement textArea = webDriver.findElement(By.xpath(RECAPTCHA_RESPONSE_LOCATION));
+        ((JavascriptExecutor)webDriver).executeScript(
+                DISPLAY_NONE_JS_SCRIPT,
+                textArea);
         textArea.sendKeys(solution);
     }
 
