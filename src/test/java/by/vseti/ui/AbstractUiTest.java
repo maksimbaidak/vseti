@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class AbstractUiTest {
 
-    @Autowired WebDriver webDriver;
+    @Autowired private WebDriver webDriver;
 
     @AfterEach
     public void refreshDriver(){
