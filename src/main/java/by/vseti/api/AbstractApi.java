@@ -28,7 +28,6 @@ public abstract class AbstractApi<T extends Response>  {
                             .extract().as(responseClass);
         }catch (Exception exception){
             log.error(exception.getMessage());
-            log.error("Response isn't valid");
             try {
                 response =
                         responseClass
@@ -43,7 +42,7 @@ public abstract class AbstractApi<T extends Response>  {
         if(response.getError().isPresent() &&
                 response.getError().get().equals(LIMIT_EXCEEDED)){
             try {
-                log.error("Request limit exceeded, trying to reconnect...");
+                log.info("Request limit exceeded, trying to reconnect...");
                 Thread.sleep(5000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);

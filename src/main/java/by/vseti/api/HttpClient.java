@@ -5,6 +5,6 @@ import io.restassured.specification.RequestSpecification;
 
 public interface HttpClient {
 
-    public abstract ValidatableResponse makeRequest(RequestSpecification specs, String body);
+    ValidatableResponse makeRequest(RequestSpecification specs, String body);
 
 }
