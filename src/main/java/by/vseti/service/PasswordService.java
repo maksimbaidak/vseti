@@ -26,7 +26,9 @@ public class PasswordService {
      */
 
     public String generateValid(){
-        return new String(faker.bothify("?")).toUpperCase() + faker.bothify("?????##");
+        return new String(
+                faker.bothify("?")).toUpperCase() +
+                faker.bothify("?????##");
     }
 
     public Stream<String> generateWrongPasswords()  {
@@ -37,10 +39,18 @@ public class PasswordService {
 
     private String generateBadPassword(Password badPasswordSpecs){
         StringBuilder genPass = new StringBuilder();
-        if(badPasswordSpecs.getLength() >= 6) genPass.append(faker.bothify("??????"));
-        if(badPasswordSpecs.isHasLowercase()) genPass.append(faker.bothify("?"));
-        if(badPasswordSpecs.isHasUppercase()) genPass.append(new String(faker.bothify("?")).toUpperCase());
-        if(badPasswordSpecs.isHasDigitOrSymbol()) genPass.append(faker.bothify("#"));
+        if(badPasswordSpecs.getLength() >= 6) {
+            genPass.append(faker.bothify("??????"));
+        }
+        if(badPasswordSpecs.isHasLowercase()) {
+            genPass.append(faker.bothify("?"));
+        }
+        if(badPasswordSpecs.isHasUppercase()) {
+            genPass.append(new String(faker.bothify("?")).toUpperCase());
+        }
+        if(badPasswordSpecs.isHasDigitOrSymbol()) {
+            genPass.append(faker.bothify("#"));
+        }
         return genPass.toString();
     }
 }

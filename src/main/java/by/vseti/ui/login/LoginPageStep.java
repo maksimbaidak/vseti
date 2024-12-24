@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class LoginPageStep extends Actions {
+public class LoginPageStep {
 
     @Autowired private LoginPage loginPage;
 
@@ -16,6 +16,6 @@ public class LoginPageStep extends Actions {
                 .sendKeysNickField(user.getUsername())
                 .sendKeysPasswordField(user.getPassword())
                 .clickSubmit()
-                .appendAction(await(1));
+                .appendAction(Actions.await(1));
     }
 }

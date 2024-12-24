@@ -5,7 +5,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.io.File;
@@ -16,10 +15,9 @@ import java.util.stream.Stream;
 @Repository
 public class PasswordStorage {
 
-    @Value("${path.email}") private String path;
+    @Value("${path.password}") private String path;
 
-    @Autowired
-    private ObjectMapper mapper;
+    @Autowired private ObjectMapper mapper;
 
     public Stream<Password> getAll(){
         try {

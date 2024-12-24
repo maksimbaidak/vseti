@@ -20,11 +20,10 @@ public class HomePageUiTest extends AbstractUiTest {
     @DisplayName("create new post on user wall")
     void newPostTest(){
         String text = "привет world";
-        assertTrue(
-                homePageStep
-                        .get(userService.getRegisteredUser("maksimbaidak"))
-                        .addNewPost(text)
-                        .getPosts()
-                        .contains(text));
+        assertTrue(homePageStep
+                .get(userService.getRegisteredUser("maksimbaidak"))
+                .addNewPost(text)
+                .getPosts()
+                .contains(text));
     }
 }

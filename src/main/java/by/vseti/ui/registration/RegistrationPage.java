@@ -4,7 +4,6 @@ import by.vseti.ui.Appendable;
 import by.vseti.ui.Page;
 import by.vseti.ui.util.CaptchaSolver;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component

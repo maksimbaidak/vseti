@@ -30,11 +30,11 @@ public class UserService {
     }
 
     public User getValidRandomUser(){
-        return validRandomUser().build();
+        return generateValidRandomUser().build();
     }
 
     public User getUserWithPasswordMisMatch(){
-        return validRandomUser()
+        return generateValidRandomUser()
                 .passwordConfirmation(faker.bothify("???????"))
                 .build();
     }
@@ -46,7 +46,7 @@ public class UserService {
     public Stream<User> getUsersWithBadPasswords()  {
         return passwordService
                 .generateWrongPasswords()
-                .map(pass -> validRandomUser().password(pass).build());
+                .map(pass -> generateValidRandomUser().password(pass).build());
     }
 
     public User getUserWithBadEmail(){
@@ -56,10 +56,10 @@ public class UserService {
     public Stream<User> getUsersWithBadEmails(){
         return emailService
                 .generateWrongEmails()
-                .map(email -> validRandomUser().email(email).build());
+                .map(email -> generateValidRandomUser().email(email).build());
     }
 
-    private User.UserBuilder validRandomUser(){
+    private User.UserBuilder generateValidRandomUser(){
         String password = passwordService.generateValid();
         return User
                 .builder()

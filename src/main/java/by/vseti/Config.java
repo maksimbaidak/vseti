@@ -33,6 +33,7 @@ public class Config {
     @Bean
     @Scope("singleton")
     public WebDriver getWebDriver(){
+
         ChromeOptions chromeOptions  = new ChromeOptions();
         chromeOptions.addArguments("--disable-notifications");
         chromeOptions.addArguments("disable-infobars");
@@ -40,12 +41,10 @@ public class Config {
         chromeOptions.addArguments("user-agent=\"Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)\"");
 
         ChromeDriver driver = new ChromeDriver(chromeOptions);
-//        chromeOptions.addArguments("--proxy-server=http://95.182.124.184:3000");
-//        ChromeDriver driver = new ChromeDriver(chromeOptions);
-//        driver.register(UsernameAndPassword.of("bQkHAs", "1fzgVH0dI0"));
 
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+
         this.webDriver = driver;
         return driver;
     }

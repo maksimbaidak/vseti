@@ -6,14 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class HomePageStep extends Actions {
+public class HomePageStep {
 
     @Autowired private HomePage homePage;
 
     public HomePageStep get(User user){
         homePage
                 .get(user)
-                .appendAction(await(10));
+                .appendAction(Actions.await(10));
         return this;
     }
 
@@ -22,6 +22,6 @@ public class HomePageStep extends Actions {
                 .clickNewPostButton()
                 .sendKeysNewPostWindow(text)
                 .clickCreateNewPostButton()
-                .appendAction(await(2));
+                .appendAction(Actions.await(2));
     }
 }

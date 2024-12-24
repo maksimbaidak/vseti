@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-public class RegistrationPageStep extends Actions {
+public class RegistrationPageStep {
 
     @Autowired private RegistrationPage registrationPage;
 
@@ -17,11 +17,11 @@ public class RegistrationPageStep extends Actions {
                 .sendKeysEmailField(user.getEmail())
                 .sendKeysPasswordField(user.getPassword())
                 .sendKeysConfirmPasswordField(user.getPassword())
-                .appendAction(logInfo("Current user: " + user.toString()))
+                .appendAction(Actions.logInfo("Current user: " + user.toString()))
                 .clickAgreementCheckbox()
                 .clickSubmitButton()
-                .appendAction(logDebug("submit button was clicked"))
-                .appendAction(await(5));
+                .appendAction(Actions.logDebug("submit button was clicked"))
+                .appendAction(Actions.await(5));
     }
 
     public RegistrationPage fillFormAndSolveCaptchaAndSubmit(User user){
@@ -30,13 +30,13 @@ public class RegistrationPageStep extends Actions {
                 .sendKeysEmailField(user.getEmail())
                 .sendKeysPasswordField(user.getPassword())
                 .sendKeysConfirmPasswordField(user.getPasswordConfirmation())
-                .appendAction(logInfo("Current user: " + user.toString()))
+                .appendAction(Actions.logInfo("Current user: " + user.toString()))
                 .clickReCaptcha()
-                .appendAction(logInfo("recaptcha solved"))
-                .appendAction(await(5))
+                .appendAction(Actions.logInfo("recaptcha solved"))
+                .appendAction(Actions.await(5))
                 .clickAgreementCheckbox()
                 .clickSubmitButton()
-                .appendAction(logDebug("submit button was clicked"))
-                .appendAction(await(5));
+                .appendAction(Actions.logDebug("submit button was clicked"))
+                .appendAction(Actions.await(5));
     }
 }

@@ -28,7 +28,7 @@ public class TwoCaptchaSolver extends CaptchaSolver{
                 solver.solve(captcha);
                 code = captcha.getCode();
             } catch (Exception e) {
-                log.info("Error occurred: " + e.getMessage());
+                log.error("Error occurred: " + e.getMessage());
             }
             try {
                 Thread.sleep(10000);
