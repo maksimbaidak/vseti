@@ -1,6 +1,7 @@
 package by.vseti.api.posts;
 
 import by.vseti.service.UserService;
+import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class PostsApiTest {
     @DisplayName("add new text post")
     void createPost(){
         assertEquals(
-                200,
+                HttpStatus.SC_OK,
                 postsApi
                         .createTextPostWithColor(
                                 userService.getRegisteredUser("maksimbaidak"),

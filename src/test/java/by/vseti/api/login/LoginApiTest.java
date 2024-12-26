@@ -2,6 +2,7 @@ package by.vseti.api.login;
 
 import by.vseti.service.UserService;
 
+import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,7 +23,7 @@ public class LoginApiTest {
     @DisplayName("login with registrated user")
     void positiveLogin(){
         assertEquals(
-                200,
+                HttpStatus.SC_OK,
                 loginApi
                         .login(userService.getRegisteredUser("maksimbaidak"))
                         .getStatus());

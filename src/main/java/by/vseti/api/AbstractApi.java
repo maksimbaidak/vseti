@@ -18,7 +18,9 @@ public abstract class AbstractApi<T extends Response>  {
             String body,
             RequestSpecification specifications,
             Class<T> responseClass){
+
         Response response = null;
+
         try {
             response =
                     httpClient
